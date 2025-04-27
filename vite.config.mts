@@ -13,7 +13,7 @@ export default ({ mode }) => {
 
         build: {
             outDir: 'build',
-            emptyOutDir: true,
+            emptyOutDir: false,
             manifest: true,
             minify: true,
             lib: {

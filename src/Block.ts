@@ -70,8 +70,7 @@ export class Block implements Scratch.AbstractBlock {
         this.arguments = args ? args : {}
     }
 
-    update(): this
-    {
+    update(): this {
         this.text = language.getMessage(this.opcode, this.text)
         return this
     }
@@ -85,7 +84,7 @@ export class Block implements Scratch.AbstractBlock {
     async requestHandler(
         url: string,
         request_body: undefined | object = undefined
-    ) {
+    ): Promise<Response | undefined> {
         //...
         try {
             const response = await fetch(
@@ -114,7 +113,10 @@ export class Block implements Scratch.AbstractBlock {
     /**
      *
      */
-    async run(tabName: string, args: object | undefined) {
+    async run(
+        tabName: string,
+        args: object | undefined
+    ): Promise<Response | undefined> {
         return await this.requestHandler(`${tabName}/${this.opcode}`, args)
     }
 }

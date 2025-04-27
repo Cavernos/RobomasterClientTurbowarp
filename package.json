@@ -46,10 +46,7 @@
         "vite-plugin-checker": "^0.9.1",
         "vite-tsconfig-paths": "^5.1.4"
     },
-    "dependencies": {
-        "lodash": "^4.17.21",
-        "lodash-es": "^4.17.21"
-    },
+    "dependencies": {},
     "imports": {
         "#types/*.d.ts": "./src/types/*.d.ts",
         "#robomaster_turbowarp_extension/": "./src/",

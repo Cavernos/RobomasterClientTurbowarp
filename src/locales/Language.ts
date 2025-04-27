@@ -38,8 +38,8 @@ export class Language {
             fr,
         }
         this.lang = lang
-        if (!(lang in this.available_language)){
-            this.lang = "en"
+        if (!(lang in this.available_language)) {
+            this.lang = 'en'
         }
         this.translations = this.available_language[this.lang]
     }
@@ -72,10 +72,10 @@ export class Language {
         }
         return defaultValue || 'NoTranslation'
     }
-    setLanguage(lang: string){
+    setLanguage(lang: string) {
         this.lang = lang
-        if (!(lang in this.available_language)){
-            this.lang = "en"
+        if (!(lang in this.available_language)) {
+            this.lang = 'en'
         }
         this.translations = this.available_language[this.lang]
     }

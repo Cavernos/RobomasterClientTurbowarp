@@ -1,5 +1,7 @@
 # To setup developpement mode
+
 ## For Server Side
+
 ```shell
 git clone https://github.com/GueuleDeL0up/robomaster-extension-for-scratch.git
 python -m venv venv
@@ -10,6 +12,7 @@ robomaster_cli
 ```
 
 # To upgrade on Rapsberry-Pi
+
 ```
 git pull origin [branch_name]
 source venv/bin/activate

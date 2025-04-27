@@ -3,6 +3,7 @@
 ```
 OS : Raspbian Lite x64
 ```
+
 To be able to connect on the pi I had to connect an ethernet cable and share network connection.
 After that I was able to scan the network and get the Ip Address of the pi
 For more information see: https://pihw.wordpress.com/guides/direct-network-connection/
@@ -16,6 +17,7 @@ Password : l220-robot (Temporary)
 
 Command : ssh robomaster@192.168.0.73
 ```
+
 <!--
 # SET IP STATIC FOR RASPBERRY (Done)
 ```
@@ -83,7 +85,7 @@ sudo systemctl start NetworkManager
 nmcli device
 # IF WIFI is unavalaible
 sudo nmcli radio wifi on
- 
+
 # Start Hotspot
 sudo nmcli device wifi hotspot ssid RPI-ROBOMASTER password 12345678 ifname wlan0
 
@@ -117,16 +119,20 @@ cd ../../
 python src/app/robomaster_server.py
 
 ```
+
 # SETUP NGINX SERVER (Not Implemented) and GUNICORN
+
 ```shell
 sudo nano /etc/nginx/sites-available/robomaster_api
 sudo ln -sf /etc/nginx/sites-available/robomaster_api /etc/nginx/sites-enabled/robomaster_api
-# Configure ssl 
+# Configure ssl
 mkdir ~/ssl-certificate
 cd ~/ssl-certificate
-openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 # Generate certificate 
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 # Generate certificate
 ```
+
 ## Nginx congiguration File
+
 ```nginx
 server {
     listen 443 ssl http2;
@@ -146,7 +152,9 @@ server {
     }
 }
 ```
+
 ## GUNICORN config
+
 ```shell
 cd ~/app/
 ```

@@ -179,10 +179,7 @@ export const Smart = {
         ),
     ],
     menus: {
-        status: language.getMessage('status', [
-            "activate",
-            "desactivate"
-        ]),
+        status: language.getMessage('status', ['activate', 'desactivate']),
         exposureValues: language.getMessage('exposureValues', [
             'high',
             'mean',

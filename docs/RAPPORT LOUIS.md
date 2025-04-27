@@ -1,12 +1,13 @@
 ---
-Title: "Rapport"
-author: "Louis DUBOIS"
-date: ""
-output: 
-    html_document: 
+Title: 'Rapport'
+author: 'Louis DUBOIS'
+date: ''
+output:
+    html_document:
     css: ./style.css
     self_containes: no
 ---
+
 <style src="./style.css">
     * {
     text-align: justify;
@@ -37,17 +38,18 @@ ol ol ol {
 Louis **DUBOIS**
 
 # Table des Matières
-1.   [Introduction](#introduction)
+
+1.  [Introduction](#introduction)
 2.  [Etude préliminaire](#etude-préliminaire)
-4.  [Mise en place de l'environnement de développement](#mise-en-place-de-lenvironnement-de-développement)
+3.  [Mise en place de l'environnement de développement](#mise-en-place-de-lenvironnement-de-développement)
     1. [Configuration de Python](#configuration-de-python)
         1. [Installation de Python 3.8.9](#installation-de-python-389)
             - [Windows](#windows)
             - [Linux](#linux)
             - [MacOS](#macos)
 
-
 # Introduction
+
 Le principe de ce projet est de réaliser une API pour le robot en python. Notre but est donc de comprendre comment fonctionne l’API avec la programmation en block de type scratch pour pouvoir ensuite rajouter des fonctionnalités en python. Nous avons donc étudié la possibilité d’utiliser un autre éditeur Blockly que l’application du robot et nous sommes intéresser à la façon avec laquelle le robot avait la possibilité de communiquer entre lui et l’application. Une fois que cela a été compris nous avons pu utiliser Turbowarp pour la partie block et une api python pour la communication avec le robot.
 
 # Etude préliminaire
@@ -57,9 +59,10 @@ Le principe de ce projet est de réaliser une API pour le robot en python. Notre
 Tout d’abord, il nous a fallu nous initier au logiciel et découvrir les possibilités de programmation avec l’api de type scratch sur le robot. Nous avons donc créé un premier programme ci-dessous :
 
 ![Programme d'initiation en blockly](./image/figure_1.png)
+
 <p class="center caption">Figure 1 Programme d'initiation en blockly</p>
 
-Une fois ce programme réalisé et la configuration mise en place sur notre ordinateur pour développer en python, nous avons donc essayer de reproduire ce programme en python. Le code est disponible ci-dessous :  
+Une fois ce programme réalisé et la configuration mise en place sur notre ordinateur pour développer en python, nous avons donc essayer de reproduire ce programme en python. Le code est disponible ci-dessous :
 
 ```python
 from robomaster import robot
@@ -67,7 +70,7 @@ if __name__ == "__main__":
      ep_robot = robot.Robot()
      try:
          ep_robot.initialize()
-         timer = 0 
+         timer = 0
          robot_led_module = ep_robot.led
          while timer != 10:
              if timer%2 == 0:
@@ -81,21 +84,26 @@ if __name__ == "__main__":
          ep_robot.close()
     ep_robot.close()
 ```
+
 <p class="center caption">Code 1 Equivalent python du programme du dessus
 </p>
 
 Une fois cette étape réalisée nous avons pu comprendre comment le robot transcrivait les blocks en instruction compréhensible par lui. Cela était possible grâce un sdk python disponible sur le site des développeurs du robot disponible à l’adresse suivante : [Robomaster SDK](http://robomaster-dev.readthedocs.io/en/latest/). Nous avons donc suivi les premières étapes du tutoriel de ce lien que nous allons récapituler dans la section suivante.
 `
+
 ## ROADMAP du projet
+
 // schéma option 2 + explication brève du projet
 
 # Mise en place de l’environnement de développement
+
 Pour commencer le développement du projet, il nous a fallu mettre en place un environnement de développement. On a donc créer un nouveau dossier et nous sommes placé à l'intérieur:
 
 ```shell
 mkdir robomaster-extension
 cd robomaster-extension
 ```
+
 <p class="center caption">Code 2 Création du dossier du projet</p>
 
 Une fois ce dossier créer, nous avons configuré les outils pour pouvoir utiliser le SDK du robot.
@@ -103,26 +111,32 @@ Une fois ce dossier créer, nous avons configuré les outils pour pouvoir utilis
 ## Configuration de Python
 
 ### Installation de Python 3.8.9
+
 Avant de pouvoir configurer python, il nous a fallu installer la bonne version de python. Celle indiqué sur la documentation est 3.8.9.
 
 Pour ce faire, on a suivi les étapes d'installation disponible sur le site de [python](http://python.org):
 
 #### Windows
+
 Pour Windows avec un installateur de packet:
+
 ```shell
 choco install python --version=3.8.9
 # Si une version de python est déjà installer il faut changer la variable d'environnement Path
 ```
+
 In Search, search for System and then select: System (Control Panel)<br/>
 Click the Advanced system settings link<br/>
 Click Environment Variables. In the section System Variables find PATH environment variable and select it. Click Edit.
 
-Une fois que vous avez la variable d'environnement sous les yeux, cherchez : 
+Une fois que vous avez la variable d'environnement sous les yeux, cherchez :
+
 ```
 "C:\Users\\{Votre nom}\AppData\Local\Programs\Python\Python{Version}"
 ```
+
 Si la version de python est différente que 38 alors remplacez la par 38.
- 
+
 Pour vérifier que python est bien installé :
 
 ```shell
@@ -132,6 +146,7 @@ python --version
 #### Linux
 
 Exemple de la méthode d'installation de python 3.8.9 sur raspberry pi 5:
+
 ```shell
 sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev
 
@@ -148,6 +163,7 @@ cd ..
 python --version
 
 ```
+
 Dans le cas où vous utiliseriez une autre distribution linux, veuillez vous réfférez au lien ci-dessous:
 
 [Methode d'installation de python sur Ubuntu](https://www.liquidweb.com/blog/how-to-install-and-update-python-to-3-9-in-ubuntu/)<br/>
@@ -161,39 +177,52 @@ Dans le cas où vous utiliseriez une autre distribution linux, veuillez vous ré
 
 ### Création de l'environnement virtuel (A ajouter dans la table des matières)
 
-Une fois python installé, nous allons pouvoir commencer à travailler avec et pour ce faire, nous avons d'abord créer un environnement virtuel. Cette environnement virtuel nous permet de créer une instance de python locale et empaqueté dans le dossier de notre projet. Cela nous permet d'isoler notre projet de notre installation de python. Pour créer cet environnement virtuel on exécute la commande suivante :  
+Une fois python installé, nous allons pouvoir commencer à travailler avec et pour ce faire, nous avons d'abord créer un environnement virtuel. Cette environnement virtuel nous permet de créer une instance de python locale et empaqueté dans le dossier de notre projet. Cela nous permet d'isoler notre projet de notre installation de python. Pour créer cet environnement virtuel on exécute la commande suivante :
+
 ```shell
 python -m venv venv
 ```
+
 Une fois l'environnement de développement créé, il nous faut l'activer en tapant la commande suivante sur Windows :
+
 ```shell
 .\venv\Scripts\activate
 ```
-et celle-ci sur Linux et MacOs : 
+
+et celle-ci sur Linux et MacOs :
+
 ```shell
 source venv/bin/activate
 ```
+
 Si l'environnement virtuel est bien actif, votre terminal ressemble normalement à ceci:
- 
+
 ![Image de l'environnement virtuel actif](image/figure_2.png)
 
 Pour désactiver l'environnement virtuel, il vous suffit maintenant de taper la commande suivante sur Windows:
+
 ```shell
 .\venv\Scripts\deactivate
 ```
+
 et celle-ci sur Linux et MacOs:
+
 ```shell
 deactivate
 ```
+
 Une fois l'environnement virtuel créé, il est très pratique d'installer un IDE pour pouvoir éditer le code.
 
 ## Installation de l'IDE
+
 // Introduction sur à quoi sert l'IDE et expliquer que les solutions ci-après ne sont que des exemples et que techniquement on peut coder sur un blocnote
 
 ### VSCODE
+
 // Met les liens vers l'installation de VS-code + un tuto
 
 ### PyCharm
+
 // Met les liens de Pycham
 
 ## Installation de Turbowarp
@@ -220,13 +249,16 @@ Une fois l'environnement virtuel créé, il est très pratique d'installer un ID
 ```
 
 ### Configuration de Github
+
 // Expliquer que c'est le repo du projet
+
 ```shell
 git clone https://github.com/Cavernos/RobomasterServerTurbowarp.git
 cd RobomasterServerTurbowarp
 ```
 
 Un récapitulatif des commandes git est disponible ci-dessous:
+
 ```
 commands                                 |   info
 -----------------------------------------|-------------------------------------
@@ -240,11 +272,10 @@ git status                               |   status
 git push -d <branch_name>                |   delete branch
 git checkout <branch_name> <file_name>   |   get a file from another branch
 ```
+
 Pour plus de précision sur les commandes git, vous pouvez consulter la [documentation](https://git-scm.com/docs).
 
 # Installation de Node.JS
-
-
 
 # Installation et configuration du projet
 
@@ -252,18 +283,23 @@ Pour plus de précision sur les commandes git, vous pouvez consulter la [documen
 // le but est de créer une appli pour remplacer robomaster ...
 
 ## Maintenabilité du code
+
 // Actualisation du code
 // Récupération des changements
 // Ajout de Changement
 
 ### Récupération des changements
-// Exlication de la méthode pull 
+
+// Exlication de la méthode pull
+
 ```
 git pull origin branch_name
 ```
 
 ### Ajout de changements
+
 // Comment on ajoute
+
 ```
 git add .
 git commit -m "message to commit" -m "new line on commit"
@@ -275,7 +311,9 @@ git push origin branch_name
 // Expliques qu'on est sur une api flask en python
 
 ### Lancement du serveur de développemenet en localhost
+
 // Il faut aller dans le dossier du projet
+
 ```
 cd {Directory du projet}
 .\venv\Scripts\activate or source venv/bin/activate on Linux and MacOs
@@ -283,20 +321,21 @@ python -m pip install -e .
 set ENV=dev
 robomaster_cli
 ```
+
 ### Rajout de nouveau block/tabs
 
 // Explication général du fonctionnement et de l'arborescenc (manière dont est organisé les fichiers)
 
-
-
 ## Coté client (TypeScript)
-// Expliques que le côté client est au final un seul fichier 
-// Explique le fonctionnement général 
+
+// Expliques que le côté client est au final un seul fichier
+// Explique le fonctionnement général
 
 ### Configuration
 
 // Définition de l'environnement avant le build changer l'environnement en et l'host et le port en fonction de vos besoins
 config/config.ts
+
 ```typescript
 const config = {
     robomaster_api: {
@@ -306,7 +345,7 @@ const config = {
          * @type {string}
          * */
         //host: 'localhost',
-        
+
         env: 'production',
         host: function () {
             if (this.env === 'production') {
@@ -326,17 +365,20 @@ const config = {
             } else {
                 return 8000
             }
-        }
-    }
+        },
+    },
 }
-
 ```
-### Création de nouveau blocks/tabs 
+
+### Création de nouveau blocks/tabs
+
 // config la création de block et d'onglets
 
-### Build 
+### Build
+
 Explique le build
-```shell 
+
+```shell
 cd src/client
 npm i
 npm run build-prod
@@ -345,7 +387,9 @@ npm run build-prod
 // apparition d'un fichier extension.js dans le dossier build et c'est ça qu'on va charger dans turbowarp
 
 # Mise en place de l'environnement de production
+
 // Intro ce qu'est l'environnement de production
+
 ## La carte Raspberry-pi
 
 ### Installation Raspberry-pi (Done)
@@ -353,6 +397,7 @@ npm run build-prod
 ```
 OS : Raspbian Lite x64
 ```
+
 To be able to connect on the pi I had to connect an ethernet cable and share network connection.
 After that I was able to scan the network and get the Ip Address of the pi
 For more information see: https://pihw.wordpress.com/guides/direct-network-connection/
@@ -366,6 +411,7 @@ Password : l220-robot (Temporary)
 
 Command : ssh robomaster@192.168.0.73
 ```
+
 <!--
 # SET IP STATIC FOR RASPBERRY (Done)
 ```
@@ -433,7 +479,7 @@ sudo systemctl start NetworkManager
 nmcli device
 # IF WIFI is unavalaible
 sudo nmcli radio wifi on
- 
+
 # Start Hotspot
 sudo nmcli device wifi hotspot ssid RPI-ROBOMASTER password 12345678 ifname wlan0
 
@@ -467,16 +513,20 @@ cd ../../
 python src/app/robomaster_server.py
 
 ```
+
 ### SETUP NGINX SERVER (Not Implemented) and GUNICORN
+
 ```shell
 sudo nano /etc/nginx/sites-available/robomaster_api
 sudo ln -sf /etc/nginx/sites-available/robomaster_api /etc/nginx/sites-enabled/robomaster_api
-# Configure ssl 
+# Configure ssl
 mkdir ~/ssl-certificate
 cd ~/ssl-certificate
-openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 # Generate certificate 
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 # Generate certificate
 ```
+
 ## Nginx congiguration File
+
 ```nginx
 server {
     listen 443 ssl http2;
@@ -496,7 +546,9 @@ server {
     }
 }
 ```
+
 #### GUNICORN config
+
 ```shell
 cd ~/app/
 ```
@@ -523,30 +575,31 @@ sudo systemctl start api
 sudo systemctl status api
 sudo systemctl restart nginx
 ```
+
 ## Maintenabilité du projet et mise à jour
+
 ```shell
-git pull origin [branch_name] # Récupérer le code sur la 
+git pull origin [branch_name] # Récupérer le code sur la
 source venv/bin/activate
 python -m pip install -e .
 sudo systemctl stop api
 sudo systemctl start api
 ```
 
-# Statut du projet 
+# Statut du projet
 
 ## Les blocs turbowarp déjà implémenté et testé
+
 // Trouver un nouveau titre
-// image de turbowarp avec les blocs et on explique ce qui a été testé sur le robot 
+// image de turbowarp avec les blocs et on explique ce qui a été testé sur le robot
 // Contribution de nicolas pour savoir ce qu'il a testé
 
 ## Ce qu'il reste à faire
- // Portage des codes de samuel et laurent en bloc (Explication des algorithmes par samuel et laurent)
+
+// Portage des codes de samuel et laurent en bloc (Explication des algorithmes par samuel et laurent)
 // Propagation de la variable de connection des robots dans les différents onglets python
 Liste non exhaustive
 
 ## Ce qui pourrait être fait
 
-
 # Conclusion
-
-

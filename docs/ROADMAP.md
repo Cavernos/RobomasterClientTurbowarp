@@ -33,6 +33,7 @@ SHOW_LEGEND()
 ## Production Environment
 
 ### Option 1
+
 <!--
 <div hidden>
 
@@ -85,7 +86,7 @@ System_Boundary(c2, "Raspberry Pi [10.42.0.1] connected with Isep Network") {
     System_Boundary(c3, "Local Network from Raspberry Pi use as router"){
         System(robot, "Robot", "10.42.0-255.1-255, sta mode")
 }
-   
+
 }
 
 
