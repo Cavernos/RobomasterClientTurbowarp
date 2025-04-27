@@ -1,6 +1,6 @@
 {
     "name": "robomaster_turbowarp_extension",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "type": "module",
     "description": "This extension provide robomaster api from python to turbowarp",
     "main": "main.js",

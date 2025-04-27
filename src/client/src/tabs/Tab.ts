@@ -1,5 +1,6 @@
 import * as _ from 'lodash-es'
 import { Block } from '#robomaster_turbowarp_extension/Block.ts'
+import { language } from '#config'
 /**
  * Create a new tab
  * @class Tab
@@ -7,8 +8,8 @@ import { Block } from '#robomaster_turbowarp_extension/Block.ts'
  * // create a new tab
  * const tab = new Tab("01", newtab", "#000000", "start",
  * );
- * For more information with Scratch Extention
- * @see {@link Scratch.Extension}
+ * For more information with Scratch Extension
+ * @see {@link Scratch}
  * For more information with Tab see below
  *
  **/
@@ -18,12 +19,6 @@ export class Tab {
      * @property {string} id
      **/
     id: string
-
-    /**
-     * Tab's name
-     * @property {string} name
-     **/
-    name: string
 
     /**
      * Tab's color
@@ -44,14 +39,13 @@ export class Tab {
     menus: { [key: string]: string[] }
 
     constructor(
-        name = 'NoName',
+        id = 'NoName',
         color = '#000000',
         blocks: never[] | (Scratch.Block | Scratch.Separator)[] = [],
         menus = {}
     ) {
         // Define this tab properties
-        this.id = `${name.substring(0, 1).toLowerCase()}${name.substring(1)}`
-        this.name = name.match(/[A-Z][a-z]+/g)!.join(' ')
+        this.id = id
         this.color = color
         this.blocks = blocks!
         this.menus = menus
@@ -61,7 +55,7 @@ export class Tab {
                     this,
                     block.opcode.toString(),
                     async (args?: object | undefined) => {
-                        return await block.run(name.toLowerCase(), args)
+                        return await block.run(id.toLowerCase(), args)
                     }
                 )
             }
@@ -69,18 +63,18 @@ export class Tab {
     }
 
     /**
-     * Return this tab's information
-     * @return {string} id
-     * @return {string} name
-     * @return {string} color
-     * @return {list} blocks
-     * @return {} menus
+     * Return this tab's information and update blocks
+     * @return {Scratch.Info}
      */
     getInfo(): Scratch.Info {
-        // get Tab's information
+        this.blocks.forEach((block: (Scratch.Block | Scratch.Separator), index: number) => {
+            if (block instanceof Block){
+                this.blocks[index] = block.update()
+            }    
+        })
         return {
             id: this.id,
-            name: this.name,
+            name: (language.getMessage(this.id, "NoName") as string).match(/[A-Z][a-z]+/g)!.join(' '),
             color1: this.color,
             color2: this.color,
             blocks: this.blocks,

@@ -170,7 +170,7 @@
         "description": "name of tab",
         "blocks": {
             "arm": {
-                "text": "Deplacer le bras vers le [position]",
+                "text": "[position] le bras",
                 "description": "text on block"
             },
             "grabber": {
@@ -344,7 +344,7 @@
                 "description": "text in menu"
             },
             "recordingActions": {
-                "message": ["démarer", "stoppers"],
+                "message": ["démarer", "stopper"],
                 "description": "text in menu"
             }
         }
@@ -354,7 +354,7 @@
         "description": "name of tab",
         "blocks": {
             "start": {
-                "text": "Connection au robot [sn]",
+                "text": "Connexion au robot [sn]",
                 "description": "text on block"
             },
             "stop": {

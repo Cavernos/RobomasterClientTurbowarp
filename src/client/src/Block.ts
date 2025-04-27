@@ -45,9 +45,9 @@ export class Block implements Scratch.AbstractBlock {
 
     /**
      * Block Terminal
-     * @property {boolean | undefined}
+     * @property {boolean}
      */
-    isTerminal: boolean | undefined
+    isTerminal: boolean
     /**
      *
      * @param opcode
@@ -66,8 +66,14 @@ export class Block implements Scratch.AbstractBlock {
         this.opcode = opcode
         this.blockType = blockType
         this.isTerminal = isTerminal ? isTerminal : false
-        this.text = language.getMessage(this.opcode, text)
+        this.text = text
         this.arguments = args ? args : {}
+    }
+
+    update(): this
+    {
+        this.text = language.getMessage(this.opcode, this.text)
+        return this
     }
 
     /**

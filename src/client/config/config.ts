@@ -11,8 +11,7 @@ import { Language } from '#robomaster_turbowarp_extension/locales/Language.ts'
  * @const {Language} language - Translator
  * @instance
  * */
-const locale: string = Scratch.vm.getLocale()
-export const language = new Language(locale)
+export const language = new Language(Scratch.translate.language)
 
 /**
  * Object that represent config of the app
